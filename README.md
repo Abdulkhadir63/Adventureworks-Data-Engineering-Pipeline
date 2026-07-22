@@ -2,7 +2,7 @@
 
 <p align="center">
 
-![Python](https://img.shields.io/badge/Python-3.10-blue?style=for-the-badge&logo=python)
+![Python](https://img.shields.io/badge/Python-blue?style=for-the-badge&logo=python)
 ![Apache Airflow](https://img.shields.io/badge/Apache%20Airflow-3.3-red?style=for-the-badge&logo=apacheairflow)
 ![Databricks](https://img.shields.io/badge/Databricks-Lakehouse-orange?style=for-the-badge&logo=databricks)
 ![Apache Spark](https://img.shields.io/badge/Apache%20Spark-PySpark-E25A1C?style=for-the-badge&logo=apachespark)
