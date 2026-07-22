@@ -2,8 +2,8 @@
 
 <p align="center">
 
-![Python](https://img.shields.io/badge/Python-blue?style=for-the-badge&logo=python)
-![Apache Airflow](https://img.shields.io/badge/Apache%20Airflow-red?style=for-the-badge&logo=apacheairflow)
+![Python](https://img.shields.io/badge/Python-3.10-blue?style=for-the-badge&logo=python)
+![Apache Airflow](https://img.shields.io/badge/Apache%20Airflow-3.3-red?style=for-the-badge&logo=apacheairflow)
 ![Databricks](https://img.shields.io/badge/Databricks-Lakehouse-orange?style=for-the-badge&logo=databricks)
 ![Apache Spark](https://img.shields.io/badge/Apache%20Spark-PySpark-E25A1C?style=for-the-badge&logo=apachespark)
 ![Delta Lake](https://img.shields.io/badge/Delta%20Lake-Storage-blue?style=for-the-badge)
@@ -16,116 +16,53 @@
 
 ---
 
-# 📖 Project Overview
+# 📖 About This Project
 
-This project demonstrates a production-inspired end-to-end Data Engineering pipeline built using the AdventureWorks dataset. The pipeline follows the Medallion Architecture (Bronze → Silver → Validation → Gold) to ingest, transform, validate, and model business data for analytics and reporting.
+This repository contains my first end-to-end Data Engineering project.
 
-The primary objective of this project is to simulate how modern Data Engineering teams build scalable and reliable batch data pipelines using industry-standard tools and best practices.
+I built this project to understand how a modern batch data pipeline works in a real-world environment. Instead of learning each tool separately, I wanted to connect everything together—from data ingestion to reporting.
 
-The solution combines Apache Airflow for orchestration, Databricks for distributed data processing, Delta Lake for reliable storage and ACID transactions, AWS S3 as the data lake, and Power BI for business intelligence.
+The project starts by reading raw AdventureWorks data from AWS S3. Apache Airflow orchestrates the pipeline, Databricks processes the data using PySpark, Delta Lake stores each Medallion layer, and the final Gold tables are used to build Power BI dashboards.
 
-Rather than focusing only on data transformation, this project demonstrates the complete engineering lifecycle, including orchestration, incremental processing, data quality validation, dimensional modeling, CI/CD automation, and interactive reporting.
+While building this project, my goal wasn't just to make the pipeline work. I wanted to learn how different components work together, how data flows through each layer, and how Data Engineers design reliable and maintainable pipelines.
 
----
+This project covers:
 
-# 🎯 Business Problem
+- End-to-end ETL pipeline
+- Medallion Architecture (Bronze, Silver, Validation, Gold)
+- Apache Airflow orchestration
+- Databricks Workflows
+- Delta Lake MERGE operations
+- Incremental data processing
+- Data quality validation
+- Star Schema data modeling
+- Databricks SQL Warehouse
+- Power BI dashboards
+- Dockerized Airflow
+- GitHub Actions CI
 
-Organizations receive data from multiple operational systems every day. Raw files often contain duplicate records, inconsistent formats, invalid values, and changing schemas. Without a structured data engineering process, these issues lead to unreliable reporting and poor business decisions.
-
-To solve this challenge, this project implements a modern Lakehouse architecture that:
-
-- Ingests raw CSV files from Amazon S3.
-- Preserves raw data in the Bronze layer.
-- Cleanses and standardizes data in the Silver layer.
-- Performs automated data quality validation.
-- Builds analytical Gold tables using a dimensional model.
-- Serves curated datasets to Power BI for business reporting.
-
-This approach separates raw ingestion from business-ready analytics while maintaining data reliability and scalability.
-
----
-
-# 🏗️ Solution Architecture
-
-The pipeline is orchestrated by Apache Airflow, which triggers Databricks Workflows to process data through each Medallion layer. Data is stored in Delta Lake tables within Unity Catalog, ensuring ACID transactions and efficient incremental processing.
-
-The final Gold layer is exposed through Databricks SQL Warehouse, enabling Power BI to build interactive dashboards directly on curated business tables.
-
-> 📌 **Architecture Diagram**
-
-<p align="center">
-
-**Replace this section with your architecture diagram image**
-
-```text
-docs/Architecture_Diagram.png
-```
-
-</p>
+Although this is a portfolio project, I tried to follow production-inspired practices wherever possible and document the design decisions throughout the repository.
 
 ---
 
-# ⚙️ Technology Stack
+# 🎯 Why I Built This
 
-| Category | Technology |
-|----------|------------|
-| Programming Language | Python |
-| Distributed Processing | Apache Spark (PySpark) |
-| Orchestration | Apache Airflow |
-| Workflow Execution | Databricks Workflows |
-| Storage Format | Delta Lake |
-| Cloud Storage | AWS S3 |
-| Metadata | Unity Catalog |
-| Data Modeling | Star Schema |
-| BI & Visualization | Power BI |
-| Version Control | Git & GitHub |
-| CI/CD | GitHub Actions |
-| Containerization | Docker |
-| Dataset | Microsoft AdventureWorks |
+I created this project to challenge myself with a complete Data Engineering workflow instead of building small isolated examples.
+
+During this project I learned how data moves through a modern data platform, how orchestration works, how Delta Lake handles incremental data, how to model analytical data, and how to deliver business-ready datasets for reporting.
+
+More importantly, I learned how to debug failures, improve pipeline design, and think about Data Engineering beyond writing code.
 
 ---
 
-# ⭐ Key Features
+# 🙌 Feedback Welcome
 
-- End-to-End Medallion Architecture
-- Automated Pipeline Orchestration with Apache Airflow
-- Distributed Data Processing using PySpark
-- Incremental Data Loading using `pipeline_run_id`
-- Delta Lake MERGE (Upsert) Operations
-- Automated Data Quality Validation
-- Star Schema Data Warehouse Design
-- Databricks SQL Warehouse Integration
-- Interactive Power BI Dashboards
-- Dockerized Development Environment
-- GitHub Actions Continuous Integration (CI)
-- Production-Oriented Repository Structure
+This is my **first Data Engineering project**, and I'm still learning.
 
----
+If you notice something that could be improved, an engineering decision that could be better, or a practice that isn't production-ready, I'd genuinely appreciate your feedback.
 
-# 📂 Repository Structure
+Constructive criticism helps me become a better Data Engineer, and I'd much rather learn by fixing mistakes than leave them unnoticed.
 
-```text
-Adventureworks-Data-Engineering-Pipeline
-│
-├── dags/
-│   └── adventure_work_project/
-│
-├── databricks/
-│   ├── bronze/
-│   ├── silver/
-│   ├── validation/
-│   └── gold/
-│
-├── docs/
-│
-├── powerbi/
-│
-├── .github/
-│   └── workflows/
-│
-├── Dockerfile
-├── docker-compose.yaml
-├── requirements.txt
-├── README.md
-└── .env.example
-```
+If you have suggestions, advice, or would simply like to connect and discuss Data Engineering, feel free to reach out to me on **LinkedIn**.
+
+I'm always open to learning from experienced engineers and improving my work.
