@@ -234,13 +234,7 @@ These dashboards allow business users to explore data interactively without quer
 
 ## 📷 Dashboard Preview
 
-> 📌 **Replace this section with your dashboard screenshots**
-
-```text
-powerbi/dashboard_1.png
-powerbi/dashboard_2.png
-powerbi/dashboard_3.png
-```
+<img src="docs/powerbi Visuals.png" width="100%" height="800" alt="Pipeline Architecture Diagram">
 
 ---
 
