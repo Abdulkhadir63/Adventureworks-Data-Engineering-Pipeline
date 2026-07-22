@@ -66,3 +66,147 @@ Constructive criticism helps me become a better Data Engineer, and I'd much rath
 If you have suggestions, advice, or would simply like to connect and discuss Data Engineering, feel free to reach out to me on **LinkedIn**.
 
 I'm always open to learning from experienced engineers and improving my work.
+
+# 🏗️ Project Architecture
+
+One of the main goals of this project was to understand how data moves through a complete Data Engineering pipeline. Instead of processing everything in a single script, I followed the Medallion Architecture to organize the data into different layers, making the pipeline easier to maintain, debug, and scale.
+
+The pipeline starts when raw AdventureWorks CSV files are uploaded to an AWS S3 bucket. Apache Airflow monitors and orchestrates the workflow, while Databricks Workflows execute the PySpark notebooks responsible for processing each layer of the pipeline.
+
+Each layer has a specific responsibility:
+
+### 🥉 Bronze Layer
+
+The Bronze layer stores the raw source data exactly as it arrives from Amazon S3.
+
+At this stage I don't perform any business transformations. The main goal is to preserve the original data so it can always be traced back if something goes wrong later in the pipeline.
+
+I also add ingestion metadata such as processing timestamps and a `pipeline_run_id` that allows the pipeline to process data incrementally.
+
+---
+
+### 🥈 Silver Layer
+
+The Silver layer is where the data starts becoming useful.
+
+In this layer I clean inconsistent values, standardize data types, remove duplicates, and apply business transformations using PySpark.
+
+Instead of rewriting the entire dataset every time, I use Delta Lake MERGE operations to perform incremental updates based on the current pipeline run.
+
+---
+
+### ✅ Validation Layer
+
+Before publishing data to the Gold layer, I run a separate validation step.
+
+The purpose of this layer is to detect common data quality issues before they reach the reporting layer.
+
+Some of the validations include:
+
+- Checking for null values in important columns
+- Verifying numeric values are valid
+- Detecting duplicate records
+- Logging validation results for every pipeline execution
+
+Separating validation from transformation makes the pipeline easier to troubleshoot and helps identify data quality issues earlier.
+
+---
+
+### 🥇 Gold Layer
+
+The Gold layer contains business-ready tables designed for reporting and analytics.
+
+Here I build a Star Schema consisting of fact and dimension tables.
+
+These tables are optimized for business users and Power BI dashboards instead of raw data processing.
+
+The final Gold tables are published through Databricks SQL Warehouse, allowing Power BI to connect directly to curated analytical data.
+
+---
+
+# 🔄 End-to-End Pipeline Flow
+
+The complete workflow follows the architecture below.
+
+```text
+AdventureWorks CSV Files
+            │
+            ▼
+        AWS S3 Bucket
+            │
+            ▼
+    Apache Airflow DAG
+            │
+            ▼
+  Databricks Workflow
+            │
+            ▼
+     Bronze Layer
+            │
+            ▼
+     Silver Layer
+            │
+            ▼
+   Data Validation
+            │
+            ▼
+      Gold Layer
+            │
+            ▼
+ Databricks SQL Warehouse
+            │
+            ▼
+        Power BI
+```
+
+This separation allows each layer to have a single responsibility, making the pipeline easier to maintain and extend in the future.
+
+---
+
+# ⚡ Incremental Processing
+
+One thing I wanted to avoid was reprocessing the entire dataset every time the pipeline runs.
+
+To solve this, I implemented incremental processing using a unique `pipeline_run_id`.
+
+Each pipeline execution processes only the newly ingested records, which are then merged into Delta Lake tables using MERGE operations.
+
+This approach reduces unnecessary processing while keeping the data up to date.
+
+---
+
+# 🛠️ Technologies Used
+
+This project helped me gain hands-on experience with several tools commonly used in modern Data Engineering.
+
+| Tool | Purpose |
+|------|---------|
+| Python | Pipeline development |
+| PySpark | Distributed data processing |
+| Apache Airflow | Workflow orchestration |
+| Databricks Workflows | Notebook execution |
+| Delta Lake | ACID storage & incremental MERGE |
+| AWS S3 | Raw data storage |
+| Unity Catalog | Table management |
+| Databricks SQL Warehouse | SQL endpoint for reporting |
+| Power BI | Dashboard creation |
+| Docker | Local Airflow environment |
+| GitHub Actions | Continuous Integration |
+
+---
+
+# 💡 What I Learned
+
+This project taught me much more than how to write PySpark code.
+
+Some of my biggest takeaways were:
+
+- Breaking a large pipeline into small, maintainable layers.
+- Understanding why orchestration is just as important as transformation.
+- Designing incremental pipelines instead of full refresh pipelines.
+- Building a dimensional model for analytics.
+- Thinking about data quality before reporting.
+- Using GitHub Actions to automatically validate changes.
+- Documenting architecture instead of only writing code.
+
+Building this project helped me understand how different Data Engineering tools work together to solve a complete business problem instead of learning them in isolation.
