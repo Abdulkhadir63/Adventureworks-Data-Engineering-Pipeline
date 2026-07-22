@@ -209,11 +209,7 @@ This structure makes it simple to analyze business metrics such as sales, profit
 
 ## ⭐ Star Schema
 
-> 📌 **Replace this section with your Star Schema image**
-
-```text
-docs/star_schema.png
-```
+ <img src="docs/Star_Schema_diagram.png" width="100%" height="500" alt="Pipeline Architecture Diagram">
 
 ---
 
