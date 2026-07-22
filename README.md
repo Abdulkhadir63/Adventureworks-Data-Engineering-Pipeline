@@ -184,3 +184,117 @@ Some of my biggest takeaways were:
 - Documenting architecture instead of only writing code.
 
 Building this project helped me understand how different Data Engineering tools work together to solve a complete business problem instead of learning them in isolation.
+---
+# 📊 Data Warehouse Design
+
+After transforming and validating the data, I built a Star Schema in the Gold layer to make reporting faster and easier.
+
+Instead of querying raw transactional data, the reporting layer is organized into fact and dimension tables. This approach improves readability and follows a common design used in analytical data warehouses.
+
+### Fact Tables
+
+- **fact_sales**
+- **fact_returns**
+
+### Dimension Tables
+
+- **dim_customers**
+- **dim_products**
+- **dim_date**
+- **dim_territories**
+
+This structure makes it simple to analyze business metrics such as sales, profit, returns, customer behavior, product performance, and regional performance.
+
+---
+
+## ⭐ Star Schema
+
+> 📌 **Replace this section with your Star Schema image**
+
+```text
+docs/star_schema.png
+```
+
+---
+
+# 📈 Power BI Dashboard
+
+The final Gold tables are connected to Databricks SQL Warehouse and visualized using Power BI.
+
+Instead of creating KPI tables inside the data pipeline, I chose to calculate business metrics in Power BI using DAX measures. This keeps the data pipeline focused on preparing clean and reliable datasets while allowing the reporting layer to handle business calculations.
+
+The dashboard currently includes multiple report pages covering:
+
+- Executive Overview
+- Sales Analysis
+- Customer Analysis
+- Product Performance
+- Territory Performance
+- Return Analysis
+
+These dashboards allow business users to explore data interactively without querying the underlying warehouse directly.
+
+---
+
+## 📷 Dashboard Preview
+
+> 📌 **Replace this section with your dashboard screenshots**
+
+```text
+powerbi/dashboard_1.png
+powerbi/dashboard_2.png
+powerbi/dashboard_3.png
+```
+
+---
+
+# 🔄 CI/CD
+
+One of my goals for this project was to learn not only how to build a pipeline but also how to manage it using version control and Continuous Integration.
+
+Every change is tracked with Git, and GitHub Actions automatically validates the repository whenever new code is pushed.
+
+This gives me confidence that future changes don't accidentally break the project.
+
+The current CI pipeline includes:
+
+- Repository validation
+- Python dependency installation
+- Workflow verification
+- Basic project validation before merging changes
+
+Although this is a learning project, adding CI helped me understand how automated validation fits into a real software development workflow.
+
+---
+
+# 📁 Repository Structure
+
+The project is organized to keep orchestration, data processing, documentation, and reporting separate.
+
+```text
+Adventureworks-Data-Engineering-Pipeline
+│
+├── .github/
+│   └── workflows/
+│
+├── dags/
+│   └── adventure_work_project/
+│
+├── databricks/
+│   ├── bronze/
+│   ├── silver/
+│   ├── validation/
+│   └── gold/
+│
+├── docs/
+│── Dataset/
+├── powerbi/
+│
+├── Dockerfile
+├── docker-compose.yaml
+├── requirements.txt
+├── README.md
+└── .env.example
+```
+
+Keeping the repository organized made it much easier to work on different parts of the project independently and reflects how I wanted to structure a real-world Data Engineering project.
