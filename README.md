@@ -424,3 +424,204 @@ If you're an experienced Data Engineer or work in the data space, I'd love to he
 Feel free to connect with me on **LinkedIn**—I'm always happy to learn from others, discuss Data Engineering, and improve through constructive feedback.
 
 Thank you for taking the time to explore my project! 🚀
+
+---
+# 🚀 Getting Started
+
+If you'd like to explore or run this project on your own machine, follow the steps below.
+
+---
+
+# 📋 Prerequisites
+
+Before getting started, make sure you have the following installed:
+
+- Python 3.10+
+- Docker Desktop
+- Git
+- Apache Airflow (via Docker)
+- AWS Account
+- Databricks Workspace
+- Power BI Desktop (Optional)
+
+You'll also need:
+
+- An AWS S3 bucket
+- A Databricks Personal Access Token (PAT)
+- Access to a Databricks SQL Warehouse
+
+---
+
+# 📥 Clone the Repository
+
+```bash
+git clone https://github.com/<your-github-username>/Adventureworks-Data-Engineering-Pipeline.git
+
+cd Adventureworks-Data-Engineering-Pipeline
+```
+
+---
+
+# ⚙️ Configure Environment Variables
+
+This project uses environment variables for credentials and configuration.
+
+Create a `.env` file by copying the example configuration:
+
+```bash
+cp .env.example .env
+```
+
+Update the `.env` file with your own values.
+
+Example:
+
+```env
+AWS_ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY
+AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_KEY
+AWS_DEFAULT_REGION=YOUR_REGION
+
+DATABRICKS_HOST=https://<your-workspace>.cloud.databricks.com
+DATABRICKS_TOKEN=YOUR_DATABRICKS_PAT
+
+FERNET_KEY=YOUR_FERNET_KEY
+```
+
+> **Note:** Never commit your `.env` file or personal credentials to GitHub.
+
+---
+
+# 🐳 Start Apache Airflow
+
+Build and start the Airflow services using Docker Compose.
+
+```bash
+docker compose up --build
+```
+
+To run in detached mode:
+
+```bash
+docker compose up -d --build
+```
+
+Once the containers are running, open your browser and navigate to:
+
+```
+http://localhost:8085
+```
+
+Login using the credentials configured in your Airflow environment.
+
+---
+
+# ☁️ Configure AWS S3
+
+1. Create an S3 bucket.
+2. Upload the AdventureWorks dataset.
+3. Update any bucket references in the project configuration if needed.
+
+Example folder structure:
+
+```text
+airflow-spark-project/
+
+├── incoming/
+│   ├── customers/
+│   ├── products/
+│   ├── sales/
+│   ├── returns/
+│   ├── territories/
+│   ├── calendar/
+│   ├── product_category/
+│   └── product_sub_category/
+│
+├── bronze/
+├── silver/
+├── gold/
+├── archive/
+├── quarantine/
+└── configs/
+```
+
+---
+
+# 🧱 Configure Databricks
+
+Before running the pipeline:
+
+- Create a Databricks Workspace.
+- Import the notebooks from the `databricks/` folder.
+- Create a Databricks Workflow (Job).
+- Attach a compute cluster or use Serverless Compute (if available).
+- Update the Airflow connection with your Databricks workspace details.
+- Configure the correct Job ID in the Airflow DAG.
+
+---
+
+# ▶️ Run the Pipeline
+
+Once everything is configured:
+
+1. Upload source files to Amazon S3.
+2. Trigger the Airflow DAG.
+3. Airflow starts the Databricks Workflow.
+4. Data flows through:
+   - Bronze
+   - Silver
+   - Validation
+   - Gold
+5. Gold tables are available in Databricks SQL Warehouse.
+6. Connect Power BI to the SQL Warehouse and refresh the dashboard.
+
+---
+
+# 📊 Open the Power BI Dashboard
+
+Open the `.pbix` file located in the `powerbi/` directory.
+
+Update the connection details if necessary and refresh the dataset to load the latest Gold tables.
+
+---
+
+# 🧪 CI/CD
+
+GitHub Actions automatically validates the project whenever changes are pushed to the repository.
+
+You can view workflow execution under the **Actions** tab in GitHub.
+
+---
+
+# 🤝 Contributing
+
+Although this repository is primarily a learning project, suggestions and improvements are always welcome.
+
+If you notice a bug, discover a better approach, or have ideas to improve the project, feel free to:
+
+- Open an Issue
+- Submit a Pull Request
+- Share your feedback
+
+Every suggestion is an opportunity for me to learn something new.
+
+---
+
+# 📬 Connect With Me
+
+If you'd like to discuss Data Engineering, share feedback, or simply connect, feel free to reach out.
+
+- **LinkedIn:** https://www.linkedin.com/in/<your-linkedin-profile>
+- **GitHub:** https://github.com/<your-github-username>
+
+I'm always happy to connect with people who are passionate about Data Engineering and continuous learning.
+
+---
+
+# ⭐ Support
+
+If you found this project helpful or interesting, consider giving it a ⭐ on GitHub.
+
+It motivates me to continue building projects, learning new technologies, and sharing my journey with the community.
+
+Thank you for visiting my repository! 🚀
+
