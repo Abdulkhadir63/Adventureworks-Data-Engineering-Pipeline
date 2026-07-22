@@ -129,7 +129,7 @@ The final Gold tables are published through Databricks SQL Warehouse, allowing P
 The complete workflow follows the architecture below.
 
 
-<img src="docs/Architecture Diagram.png" width="600" alt="Pipeline Architecture Diagram">
+<img src="docs/Architecture Diagram.png" width="100%" alt="Pipeline Architecture Diagram">
 
 
 
