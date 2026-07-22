@@ -288,3 +288,139 @@ Adventureworks-Data-Engineering-Pipeline
 ```
 
 Keeping the repository organized made it much easier to work on different parts of the project independently and reflects how I wanted to structure a real-world Data Engineering project.
+
+---
+
+# 💭 Engineering Decisions
+
+While building this project, I tried to make decisions that reflect how a real Data Engineering pipeline is organized. Since this was my first end-to-end project, I focused on understanding *why* certain design choices are commonly used instead of simply making the pipeline work.
+
+Here are a few of the decisions I made and the reasoning behind them.
+
+### Why Medallion Architecture?
+
+I chose the Medallion Architecture because it separates raw, cleaned, and business-ready data into different layers.
+
+This makes the pipeline easier to debug, maintain, and extend. If an issue occurs, I can quickly identify which layer introduced the problem without affecting the rest of the pipeline.
+
+---
+
+### Why Apache Airflow?
+
+Instead of manually running notebooks, I used Apache Airflow to orchestrate the pipeline.
+
+This helped me understand how production pipelines manage task dependencies, retries, scheduling, logging, and monitoring.
+
+---
+
+### Why Databricks?
+
+I used Databricks because it provides an environment for running distributed PySpark workloads and integrates well with Delta Lake.
+
+It also allowed me to learn workflows, notebooks, SQL Warehouse, and Unity Catalog in a single platform.
+
+---
+
+### Why Delta Lake?
+
+Delta Lake provides ACID transactions and supports MERGE operations, making incremental updates much easier than rewriting entire datasets.
+
+Using Delta tables also helped me understand how modern Lakehouse architectures manage reliable data pipelines.
+
+---
+
+### Why Incremental Processing?
+
+Reprocessing the entire dataset every time is inefficient.
+
+To avoid unnecessary work, I implemented incremental processing using a `pipeline_run_id`. Each pipeline execution processes only the newly ingested data before merging it into the target tables.
+
+---
+
+### Why Validate Data Separately?
+
+I wanted data quality checks to be independent from transformations.
+
+Keeping validation as its own step makes the pipeline easier to troubleshoot and prevents invalid data from reaching the reporting layer.
+
+---
+
+### Why a Star Schema?
+
+The reporting layer is designed using a Star Schema because it simplifies analytical queries and works well with BI tools like Power BI.
+
+Instead of exposing raw transactional data, business users can work with clean fact and dimension tables.
+
+---
+
+### Why Power BI for KPIs?
+
+I chose to calculate KPIs in Power BI using DAX instead of storing them inside the data pipeline.
+
+This keeps the engineering pipeline focused on preparing reliable datasets while allowing the reporting layer to handle business calculations and visualizations.
+
+---
+
+# 🚧 Challenges I Faced
+
+Building this project wasn't always straightforward. Along the way I ran into several issues that pushed me to understand the tools more deeply.
+
+Some of the challenges included:
+
+- Setting up Apache Airflow locally with Docker.
+- Connecting Airflow to Databricks Workflows.
+- Learning Delta Lake MERGE operations.
+- Designing a Star Schema from transactional data.
+- Implementing incremental processing.
+- Handling data quality validation.
+- Organizing the project into a maintainable structure.
+- Understanding how all the technologies work together in a single pipeline.
+
+Most of these problems required reading documentation, experimenting with different approaches, and debugging until I understood the root cause.
+
+Although solving these issues took time, they became some of the most valuable learning experiences during this project.
+
+---
+
+# 🚀 Future Improvements
+
+Although the project is complete, there are several areas I'd like to explore in future versions.
+
+Some ideas include:
+
+- Migrating the pipeline to a cloud-based Airflow deployment.
+- Adding automated unit and integration tests.
+- Implementing data lineage.
+- Adding monitoring and alerting.
+- Supporting multiple source systems.
+- Introducing Infrastructure as Code (Terraform).
+- Exploring streaming pipelines with Spark Structured Streaming.
+- Expanding the project with cloud-native services.
+
+I see this project as the foundation for future learning rather than a finished product.
+
+---
+
+# 🎓 What I Learned
+
+This project taught me much more than writing PySpark code.
+
+It helped me understand how different parts of a Data Engineering platform fit together—from ingesting raw data to delivering business-ready insights.
+
+More importantly, I learned that building a reliable pipeline involves much more than transformations. It requires planning, organization, testing, debugging, documentation, and continuously improving the solution.
+
+This project gave me confidence to continue learning and build more complex Data Engineering solutions in the future.
+
+---
+
+# 🤝 Feedback & Suggestions
+
+This is my **first end-to-end Data Engineering project**, and I'm continuously learning.
+
+If you notice something that could be improved, an engineering decision that could be made better, or a best practice I may have missed, I'd genuinely appreciate your feedback. I believe the best way to grow is by understanding mistakes and learning how to solve them.
+
+If you're an experienced Data Engineer or work in the data space, I'd love to hear your suggestions or advice.
+
+Feel free to connect with me on **LinkedIn**—I'm always happy to learn from others, discuss Data Engineering, and improve through constructive feedback.
+
+Thank you for taking the time to explore my project! 🚀
