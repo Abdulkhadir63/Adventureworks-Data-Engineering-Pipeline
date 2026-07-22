@@ -129,34 +129,8 @@ The final Gold tables are published through Databricks SQL Warehouse, allowing P
 The complete workflow follows the architecture below.
 
 ```text
-AdventureWorks CSV Files
-            │
-            ▼
-        AWS S3 Bucket
-            │
-            ▼
-    Apache Airflow DAG
-            │
-            ▼
-  Databricks Workflow
-            │
-            ▼
-     Bronze Layer
-            │
-            ▼
-     Silver Layer
-            │
-            ▼
-   Data Validation
-            │
-            ▼
-      Gold Layer
-            │
-            ▼
- Databricks SQL Warehouse
-            │
-            ▼
-        Power BI
+<img src="docs/Architecture Diagram.png" width="600" alt="Pipeline Architecture Diagram">
+
 ```
 
 This separation allows each layer to have a single responsibility, making the pipeline easier to maintain and extend in the future.
