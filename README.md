@@ -128,10 +128,10 @@ The final Gold tables are published through Databricks SQL Warehouse, allowing P
 
 The complete workflow follows the architecture below.
 
-```text
+
 <img src="docs/Architecture Diagram.png" width="600" alt="Pipeline Architecture Diagram">
 
-```
+
 
 This separation allows each layer to have a single responsibility, making the pipeline easier to maintain and extend in the future.
 
