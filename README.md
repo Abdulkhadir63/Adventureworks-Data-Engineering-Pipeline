@@ -28,7 +28,7 @@ While building this project, my goal wasn't just to make the pipeline work. I wa
 
 This project covers:
 
-- End-to-end ETL pipeline
+- End-to-end ETL/ELT pipeline
 - Medallion Architecture (Bronze, Silver, Validation, Gold)
 - Apache Airflow orchestration
 - Databricks Workflows
