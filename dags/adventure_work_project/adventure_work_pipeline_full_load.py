@@ -5,13 +5,7 @@ from airflow.providers.databricks.operators.databricks import DatabricksRunNowOp
 from airflow.providers.standard.operators.empty import EmptyOperator
 import pendulum
 
-default_args = {
-    'owner': 'data_engineering',
-    'depends_on_past': False,
-    'start_date': datetime(2026, 1, 1),
-    'retries': 2,
-    'retry_delay': timedelta(minutes=3),
-}
+
 
 DATA_SOURCES = [
     "calendar", "customers", "product_category", 
