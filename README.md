@@ -610,7 +610,7 @@ Every suggestion is an opportunity for me to learn something new.
 If you'd like to discuss Data Engineering, share feedback, or simply connect, feel free to reach out.
 
 - **LinkedIn:** www.linkedin.com/in/abdul-khadir-44876735a
-- **GitHub:** https://www.instagram.com/abdulkm_63?igsh=Ymo4cnowcXhjMHVv
+- **Instagram:** https://www.instagram.com/abdulkm_63?igsh=Ymo4cnowcXhjMHVv
 
 I'm always happy to connect with people who are passionate about Data Engineering and continuous learning.
 
