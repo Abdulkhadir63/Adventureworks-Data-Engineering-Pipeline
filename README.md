@@ -454,7 +454,7 @@ You'll also need:
 # 📥 Clone the Repository
 
 ```bash
-git clone https://github.com/<your-github-username>/Adventureworks-Data-Engineering-Pipeline.git
+git clone 
 
 cd Adventureworks-Data-Engineering-Pipeline
 ```
