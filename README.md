@@ -436,10 +436,9 @@ If you'd like to explore or run this project on your own machine, follow the ste
 
 Before getting started, make sure you have the following installed:
 
-- Python 3.10+
+- Python 
 - Docker Desktop
 - Git
-- Apache Airflow (via Docker)
 - AWS Account
 - Databricks Workspace
 - Power BI Desktop (Optional)
